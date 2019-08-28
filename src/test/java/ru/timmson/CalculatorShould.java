@@ -1,9 +1,6 @@
 package ru.timmson;
 
-import jdk.jfr.Unsigned;
 import org.junit.jupiter.api.Test;
-
-import java.lang.annotation.Inherited;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -54,24 +51,6 @@ class CalculatorShould {
     }
 
     @Test
-    void returnArrange_whenFactorIsPrime() throws NegativeArraySizeException {
-        int arrange = 2;
-
-        int result = Calculator.getMinimalPrimeFactor(arrange);
-
-        assertTrue(result == arrange);
-    }
-
-    @Test
-    void returnLessThanArrange_whenFactorIsNotPrime() throws NegativeArraySizeException {
-        int arrange = 6;
-
-        int result = Calculator.getMinimalPrimeFactor(arrange);
-
-        assertTrue(result < arrange);
-    }
-
-    @Test
     void returnPrimeFactorsAs2And2And3_whenArrangeIs12() throws NegativeInputNumberException {
         int arrange = 12;
 
@@ -87,5 +66,23 @@ class CalculatorShould {
         int[] result = Calculator.getPrimeFactors(arrange);
 
         assertArrayEquals(new int[]{3, 5}, result);
+    }
+
+    @Test
+    void returnArrange_whenFactorIsPrime() throws NegativeArraySizeException {
+        int arrange = 2;
+
+        int result = Calculator.getMinimalPrimeFactor(arrange);
+
+        assertEquals(result, arrange);
+    }
+
+    @Test
+    void returnLessThanArrange_whenFactorIsNotPrime() throws NegativeArraySizeException {
+        int arrange = 6;
+
+        int result = Calculator.getMinimalPrimeFactor(arrange);
+
+        assertTrue(result < arrange);
     }
 }
