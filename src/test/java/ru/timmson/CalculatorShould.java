@@ -2,7 +2,7 @@ package ru.timmson;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CalculatorShould {
@@ -11,9 +11,9 @@ class CalculatorShould {
     void returnPrimeFactorsAs1_whenArrangeIs1() throws NegativeInputNumberException {
         int arrange = 1;
 
-        int result = Calculator.getPrimeFactors(arrange);
+        int[] result = Calculator.getPrimeFactors(arrange);
 
-        assertEquals(1, result);
+        assertArrayEquals(new int[]{1}, result);
     }
 
     @Test
@@ -28,8 +28,18 @@ class CalculatorShould {
     void returnPrimeFactorsAs2_whenArrangeIs2() throws NegativeInputNumberException {
         int arrange = 2;
 
-        int result = Calculator.getPrimeFactors(arrange);
+        int[] result = Calculator.getPrimeFactors(arrange);
 
-        assertEquals(2, result);
+        assertArrayEquals(new int[]{2}, result);
     }
+
+    @Test
+    void returnPrimeFactorsAs2And2_whenArrangeIs4() throws NegativeInputNumberException {
+        int arrange = 4;
+
+        int[] result = Calculator.getPrimeFactors(arrange);
+
+        assertArrayEquals(new int[]{2, 2}, result);
+    }
+
 }
