@@ -2,8 +2,7 @@ package ru.timmson;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class CalculatorShould {
 
@@ -49,6 +48,15 @@ class CalculatorShould {
         int[] result = Calculator.getPrimeFactors(arrange);
 
         assertArrayEquals(new int[]{2, 3}, result);
+    }
+
+    @Test
+    void returnTrue_whenFactorIsPrime() throws NegativeArraySizeException {
+        int arrange = 2;
+
+        boolean result = Calculator.isFactorPrime(arrange);
+
+        assertTrue(result);
     }
 
 }

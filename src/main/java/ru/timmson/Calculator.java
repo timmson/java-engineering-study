@@ -31,4 +31,8 @@ public class Calculator {
 
         return result;
     }
+
+    public static boolean isFactorPrime(int arrange) {
+        return arrange == 2;
+    }
 }
