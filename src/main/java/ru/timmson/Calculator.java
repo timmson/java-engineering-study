@@ -6,33 +6,32 @@ public class Calculator {
             throw new NegativeInputNumberException(arrange + " is negative");
         }
 
-        int[] result = new int[0];
+        int remainder = arrange;
+        int minimalPrimeFactor = getMinimalPrimeFactor(remainder);
+        int[] result = pushValue(new int[]{}, minimalPrimeFactor);
 
-        for (int primeFactor = 2; primeFactor <= arrange / 2; primeFactor++) {
-            if (arrange % primeFactor == 0) {
-
-                boolean isPrimFactorSquareRootOfArrange = (primeFactor * primeFactor == arrange);
-
-                int[] tmp = new int[result.length + (isPrimFactorSquareRootOfArrange ? 2 : 1)];
-
-                for (int i = 0; i < result.length; i++) {
-                    tmp[i] = result[i];
-                }
-                result = tmp;
-
-                if (isPrimFactorSquareRootOfArrange) {
-                    result[result.length - 2] = primeFactor;
-                }
-                result[result.length - 1] = primeFactor;
-            }
+        while (minimalPrimeFactor < remainder) {
+            remainder = remainder / minimalPrimeFactor;
+            minimalPrimeFactor = getMinimalPrimeFactor(remainder);
+            result = pushValue(result, minimalPrimeFactor);
         }
-
-        result = result.length == 0 ? new int[]{arrange} : result;
 
         return result;
     }
 
-    public static boolean isFactorPrime(int arrange) {
-        return arrange == 2;
+    private static int[] pushValue(int[] array, int value) {
+        int[] newArray = new int[array.length + 1];
+        System.arraycopy(array, 0, newArray, 0, array.length);
+        newArray[newArray.length - 1] = value;
+        return newArray;
+    }
+
+    public static int getMinimalPrimeFactor(int arrange) {
+        for (int i = 2; i < arrange; i++) {
+            if (arrange % i == 0) {
+                return i;
+            }
+        }
+        return arrange;
     }
 }
