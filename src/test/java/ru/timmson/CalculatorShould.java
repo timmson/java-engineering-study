@@ -42,4 +42,13 @@ class CalculatorShould {
         assertArrayEquals(new int[]{2, 2}, result);
     }
 
+    @Test
+    void returnPrimeFactorsAs2And3_whenArrangeIs6() throws NegativeInputNumberException {
+        int arrange = 6;
+
+        int[] result = Calculator.getPrimeFactors(arrange);
+
+        assertArrayEquals(new int[]{2, 3}, result);
+    }
+
 }
