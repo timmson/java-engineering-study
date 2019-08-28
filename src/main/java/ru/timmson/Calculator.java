@@ -5,6 +5,6 @@ public class Calculator {
         if (arrange < 0) {
             throw new NegativeInputNumberException(arrange + " is negative");
         }
-        return 1;
+        return arrange;
     }
 }
