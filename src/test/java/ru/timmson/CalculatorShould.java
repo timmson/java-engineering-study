@@ -2,15 +2,12 @@ package ru.timmson;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Calendar;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CalculatorShould {
 
     @Test
-    public void returnPrimeFactorsAs1_whenArrangeIs1() {
+    public void returnPrimeFactorsAs1_whenArrangeIs1() throws NegativeInputNumberException {
         int arrange = 1;
 
         int result = Calculator.getPrimeFactors(arrange);
@@ -18,4 +15,14 @@ public class CalculatorShould {
         assertEquals(1, result);
     }
 
+    @Test
+    void returnException_whenArrangeIsNegative() {
+        int arrange = -1;
+
+
+        assertThrows(NegativeInputNumberException.class, () -> {
+            Calculator.getPrimeFactors(arrange);
+        });
+
+    }
 }
