@@ -14,7 +14,11 @@ class Discount {
         return discount;
     }
 
-    public static int getAmount(int amount) {
-        return Long.valueOf(Math.min(1000, Math.round(amount * get(amount) / 100.0))).intValue();
+    public static int getAmount(int amount, boolean isPrivate) {
+        int discountAmount = Long.valueOf(Math.round(amount * get(amount) / 100.0)).intValue();
+        if (!isPrivate) {
+            discountAmount = Math.min(1000, discountAmount);
+        }
+        return discountAmount;
     }
 }
