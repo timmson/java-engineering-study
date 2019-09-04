@@ -17,13 +17,24 @@ public class DiscountShould {
     }
 
     @Когда("Считаем сидку")
-    public void when() {
+    public void whenGetDiscount() {
         this.actualResult = Discount.get(this.amount);
     }
 
-    @Тогда("Получаем скидку {int}")
-    public void then(int expectedResult) {
+    @Когда("Считаем сидку в валюте покупке")
+    public void whenGetDiscountAmount() {
+        this.actualResult = Discount.getAmount(this.amount);
+    }
+
+    @Тогда("Получаем скидку {int}%")
+    public void thenDiscount(int expectedResult) {
         assertEquals(expectedResult, actualResult);
     }
+
+    @Тогда("Получаем скидку {int}")
+    public void thenDiscountAmount(int expectedResult) {
+        assertEquals(expectedResult, actualResult);
+    }
+
 
 }

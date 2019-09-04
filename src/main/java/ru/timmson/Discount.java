@@ -7,10 +7,14 @@ class Discount {
         if (amount >= 1000) {
             if (amount < 5000) {
                 discount = 3;
-            } else if (amount < 7000) {
+            } else {
                 discount = 5;
             }
         }
         return discount;
+    }
+
+    public static int getAmount(int amount) {
+        return Long.valueOf(Math.min(1000, Math.round(amount * get(amount) / 100.0))).intValue();
     }
 }
