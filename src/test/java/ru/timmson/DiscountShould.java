@@ -18,7 +18,7 @@ public class DiscountShould {
 
     @Когда("Считаем сидку")
     public void when() {
-        int actualResult = Discount.get(this.amount);
+        this.actualResult = Discount.get(this.amount);
     }
 
     @Тогда("Получаем скидку {int}")
