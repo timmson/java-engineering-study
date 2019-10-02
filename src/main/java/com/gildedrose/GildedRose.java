@@ -43,10 +43,7 @@ class GildedRose {
 
         for (Item item : items) {
 
-            if (item.isSulfuras()) {
-            } else {
-                item.sellIn = item.sellIn - 1;
-            }
+            item.decreaseSellIn();
 
             if (item.sellIn < 0) {
                 if (item.isAgedBrie()) {

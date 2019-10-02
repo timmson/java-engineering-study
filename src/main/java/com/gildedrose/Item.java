@@ -30,6 +30,13 @@ public class Item {
         return name.equals(SULFURAS_HAND_OF_RAGNAROS);
     }
 
+    void decreaseSellIn() {
+        if (isSulfuras()) {
+        } else {
+            sellIn = sellIn - 1;
+        }
+    }
+
     @Override
     public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
