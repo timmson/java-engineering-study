@@ -37,24 +37,18 @@ public class Item {
     void preUpdateQuality() {
         switch (name) {
             case AGED_BRIE:
-                if (isQualityLessThen50()) {
-                    quality = quality + 1;
-                }
+                increaseQuality();
                 break;
             case BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT:
-                if (isQualityLessThen50()) {
+                if (quality < 50) {
                     quality = quality + 1;
 
                     if (sellIn < 11) {
-                        if (isQualityLessThen50()) {
-                            quality = quality + 1;
-                        }
+                        increaseQuality();
                     }
 
                     if (sellIn < 6) {
-                        if (isQualityLessThen50()) {
-                            quality = quality + 1;
-                        }
+                        increaseQuality();
                     }
                 }
                 break;
@@ -66,17 +60,17 @@ public class Item {
         }
     }
 
-    private boolean isQualityLessThen50() {
-        return quality < 50;
+    private void increaseQuality() {
+        if (quality < 50) {
+            quality = quality + 1;
+        }
     }
 
     void postUpdateQuality() {
         if (sellIn < 0) {
             switch (name) {
                 case AGED_BRIE:
-                    if (isQualityLessThen50()) {
-                        quality = quality + 1;
-                    }
+                    increaseQuality();
                     break;
                 case BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT:
                     quality = 0;
