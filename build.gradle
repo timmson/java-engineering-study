@@ -5,5 +5,7 @@ repositories {
 }
 
 dependencies {
+    testImplementation "io.cucumber:cucumber-java:4.7.2"
+    testImplementation "io.cucumber:cucumber-junit:4.7.2"
     testImplementation  "org.junit.jupiter:junit-jupiter-api:5.5.1"
 }
