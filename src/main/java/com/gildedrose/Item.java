@@ -39,7 +39,6 @@ public class Item {
         if (name.equals(AGED_BRIE)) {
             if (quality < DAY_50) {
                 quality = quality + 1;
-
             }
         } else if (name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
             if (quality < DAY_50) {
@@ -70,14 +69,12 @@ public class Item {
                 if (quality < DAY_50) {
                     quality = quality + 1;
                 }
+            } else if (name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
+                quality = 0;
             } else {
-                if (name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
-                    quality = 0;
-                } else {
-                    if (quality > 0) {
-                        if (!isSulfuras()) {
-                            quality = quality - 1;
-                        }
+                if (quality > 0) {
+                    if (!isSulfuras()) {
+                        quality = quality - 1;
                     }
                 }
             }
