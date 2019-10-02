@@ -43,7 +43,7 @@ public class Item {
         return this.name + ", " + this.sellIn + ", " + this.quality;
     }
 
-    void updateQuality() {
+    void preUpdateQuality() {
         if (isAgedBrie() || isBackstagePasses()) {
             if (quality < DAY_50) {
                 quality = quality + 1;
@@ -70,5 +70,31 @@ public class Item {
                 }
             }
         }
+    }
+
+    void postUpdateQuality() {
+        if (sellIn < 0) {
+            if (isAgedBrie()) {
+                if (quality < DAY_50) {
+                    quality = quality + 1;
+                }
+            } else {
+                if (isBackstagePasses()) {
+                    quality = 0;
+                } else {
+                    if (quality > 0) {
+                        if (!isSulfuras()) {
+                            quality = quality - 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    void updateQuality() {
+        preUpdateQuality();
+        decreaseSellIn();
+        postUpdateQuality();
     }
 }
