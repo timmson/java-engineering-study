@@ -6,10 +6,6 @@ Feature:  Hi and welcome to team Gilded Rose. As you know, we are a small inn wi
   Leeroy, who has moved on to new adventures. Your task is to add the new feature to our system so that
   we can begin selling a new category of items. First an introduction to our system:
 
-  - All items have a SellIn value which denotes the number of days we have to sell the item
-  - All items have a Quality value which denotes how valuable the item is
-  - At the end of each day our system lowers both values for every item
-
   Scenario: Item goes from SellIn 1 and Quality 1 to 0 and 0 in the end of the day
     Given Item "Item" with SellIn 1 and Quality 1
     When End of day occurs
