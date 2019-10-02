@@ -2,6 +2,10 @@ package com.gildedrose;
 
 public class Item {
 
+    static final String AGED_BRIE = "Aged Brie";
+    static final String SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
+    static final String BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT = "Backstage passes to a TAFKAL80ETC concert";
+
     public String name;
 
     public int sellIn;
@@ -17,5 +21,9 @@ public class Item {
     @Override
     public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
+    }
+
+    boolean isAgedBrie() {
+        return name.equals(AGED_BRIE);
     }
 }
