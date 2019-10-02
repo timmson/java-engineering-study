@@ -30,26 +30,20 @@ public class Item {
         postUpdateQuality();
     }
 
-    void decreaseSellIn() {
-        sellIn = sellIn - (isSulfuras() ? 0 : 1);
-    }
-
     void preUpdateQuality() {
         switch (name) {
             case AGED_BRIE:
                 increaseQuality();
                 break;
             case BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT:
-                if (quality < 50) {
-                    quality = quality + 1;
+                increaseQuality();
 
-                    if (sellIn < 11) {
-                        increaseQuality();
-                    }
+                if (sellIn < 11) {
+                    increaseQuality();
+                }
 
-                    if (sellIn < 6) {
-                        increaseQuality();
-                    }
+                if (sellIn < 6) {
+                    increaseQuality();
                 }
                 break;
             default:
@@ -64,6 +58,10 @@ public class Item {
         if (quality < 50) {
             quality = quality + 1;
         }
+    }
+
+    void decreaseSellIn() {
+        sellIn = sellIn - (isSulfuras() ? 0 : 1);
     }
 
     void postUpdateQuality() {
