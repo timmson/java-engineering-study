@@ -5,7 +5,6 @@ public class Item {
     static final String AGED_BRIE = "Aged Brie";
     static final String SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
     static final String BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT = "Backstage passes to a TAFKAL80ETC concert";
-    static final int DAY_50 = 50;
 
     public String name;
 
@@ -38,22 +37,22 @@ public class Item {
     void preUpdateQuality() {
         switch (name) {
             case AGED_BRIE:
-                if (quality < DAY_50) {
+                if (isQualityLessThen50()) {
                     quality = quality + 1;
                 }
                 break;
             case BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT:
-                if (quality < DAY_50) {
+                if (isQualityLessThen50()) {
                     quality = quality + 1;
 
                     if (sellIn < 11) {
-                        if (quality < DAY_50) {
+                        if (isQualityLessThen50()) {
                             quality = quality + 1;
                         }
                     }
 
                     if (sellIn < 6) {
-                        if (quality < DAY_50) {
+                        if (isQualityLessThen50()) {
                             quality = quality + 1;
                         }
                     }
@@ -67,11 +66,15 @@ public class Item {
         }
     }
 
+    private boolean isQualityLessThen50() {
+        return quality < 50;
+    }
+
     void postUpdateQuality() {
         if (sellIn < 0) {
             switch (name) {
                 case AGED_BRIE:
-                    if (quality < DAY_50) {
+                    if (isQualityLessThen50()) {
                         quality = quality + 1;
                     }
                     break;
