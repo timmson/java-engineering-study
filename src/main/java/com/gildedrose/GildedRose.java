@@ -12,7 +12,6 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-
             if (item.isAgedBrie() || item.isBackstagePasses()) {
                 if (item.quality < DAY_50) {
                     item.quality = item.quality + 1;
@@ -39,6 +38,10 @@ class GildedRose {
                     }
                 }
             }
+
+        }
+
+        for (Item item : items) {
 
             if (item.isSulfuras()) {
             } else {
