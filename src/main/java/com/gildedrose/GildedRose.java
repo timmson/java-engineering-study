@@ -14,8 +14,8 @@ class GildedRose {
         for (Item item : items) {
 
             final boolean isAgedBrie = item.isAgedBrie();
-            final boolean isBackstagePasses = item.name.equals(Item.BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT);
-            final boolean isSulfuras = item.name.equals(Item.SULFURAS_HAND_OF_RAGNAROS);
+            final boolean isBackstagePasses = item.isBackstagePasses();
+            final boolean isSulfuras = item.isSulfuras();
 
             if (isAgedBrie || isBackstagePasses) {
                 if (item.quality < DAY_50) {

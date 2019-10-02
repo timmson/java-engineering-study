@@ -18,12 +18,20 @@ public class Item {
         this.quality = quality;
     }
 
+    boolean isAgedBrie() {
+        return name.equals(AGED_BRIE);
+    }
+
+    boolean isBackstagePasses() {
+        return name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT);
+    }
+
+    boolean isSulfuras() {
+        return name.equals(SULFURAS_HAND_OF_RAGNAROS);
+    }
+
     @Override
     public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
-    }
-
-    boolean isAgedBrie() {
-        return name.equals(AGED_BRIE);
     }
 }
