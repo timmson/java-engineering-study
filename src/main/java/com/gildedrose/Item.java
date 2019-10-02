@@ -26,6 +26,13 @@ public class Item {
         switch (name) {
             case AGED_BRIE:
                 increaseQuality();
+
+                sellIn--;
+
+                if (sellIn < 0) {
+                    increaseQuality();
+                }
+
                 break;
             case BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT:
                 increaseQuality();
@@ -37,27 +44,28 @@ public class Item {
                 if (sellIn < 6) {
                     increaseQuality();
                 }
+
+                sellIn--;
+
+                if (sellIn < 0) {
+                    quality = 0;
+                }
+
+                break;
+            case SULFURAS_HAND_OF_RAGNAROS:
+
                 break;
             default:
                 decreaseQuality();
+                sellIn--;
+
+                if (sellIn < 0) {
+                    decreaseQuality();
+                }
+
                 break;
         }
 
-        sellIn = sellIn - (isSulfuras() ? 0 : 1);
-
-        if (sellIn < 0) {
-            switch (name) {
-                case AGED_BRIE:
-                    increaseQuality();
-                    break;
-                case BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT:
-                    quality = 0;
-                    break;
-                default:
-                    decreaseQuality();
-                    break;
-            }
-        }
     }
 
     private void increaseQuality() {
