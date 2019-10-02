@@ -47,9 +47,7 @@ public class Item {
                 }
                 break;
             default:
-                if (quality > 0) {
-                    quality = quality - (isSulfuras() ? 0 : 1);
-                }
+                decreaseQuality();
                 break;
         }
     }
@@ -57,6 +55,12 @@ public class Item {
     private void increaseQuality() {
         if (quality < 50) {
             quality = quality + 1;
+        }
+    }
+
+    private void decreaseQuality() {
+        if (quality > 0) {
+            quality = quality - (isSulfuras() ? 0 : 1);
         }
     }
 
@@ -74,11 +78,7 @@ public class Item {
                     quality = 0;
                     break;
                 default:
-                    if (quality > 0) {
-                        if (!isSulfuras()) {
-                            quality = quality - 1;
-                        }
-                    }
+                    decreaseQuality();
                     break;
             }
         }
