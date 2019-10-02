@@ -41,15 +41,15 @@ Feature:  Hi and welcome to team Gilded Rose. As you know, we are a small inn wi
     When End of day occurs
     Then Item get SellIn 10 and Quality 2
 
-  Scenario: "Backstage passes to a TAFKAL80ETC concert", actually increases in Quality by 1 the older it gets when SellIn more then 10 days
+  Scenario: "Backstage passes to a TAFKAL80ETC concert", actually increases in Quality by 2 the older it gets when SellIn less then 10 days
     Given Item "Backstage passes to a TAFKAL80ETC concert" with SellIn 10 and Quality 1
     When End of day occurs
     Then Item get SellIn 9 and Quality 3
 
-  Scenario: "Backstage passes", actually increases in Quality by 1 the older it gets when SellIn more then 10 days
-    Given Item "Backstage passes to a TAFKAL80ETC concert" with SellIn 3 and Quality 1
+  Scenario: "Backstage passes", actually increases in Quality by 3 the older it gets when SellIn less then 5 days
+    Given Item "Backstage passes to a TAFKAL80ETC concert" with SellIn 5 and Quality 1
     When End of day occurs
-    Then Item get SellIn 2 and Quality 4
+    Then Item get SellIn 4 and Quality 4
 
 
 
