@@ -23,14 +23,6 @@ public class Item {
     }
 
     void updateQuality() {
-        preUpdateQuality();
-
-        decreaseSellIn();
-
-        postUpdateQuality();
-    }
-
-    void preUpdateQuality() {
         switch (name) {
             case AGED_BRIE:
                 increaseQuality();
@@ -50,25 +42,9 @@ public class Item {
                 decreaseQuality();
                 break;
         }
-    }
 
-    private void increaseQuality() {
-        if (quality < 50) {
-            quality = quality + 1;
-        }
-    }
-
-    private void decreaseQuality() {
-        if (quality > 0) {
-            quality = quality - (isSulfuras() ? 0 : 1);
-        }
-    }
-
-    void decreaseSellIn() {
         sellIn = sellIn - (isSulfuras() ? 0 : 1);
-    }
 
-    void postUpdateQuality() {
         if (sellIn < 0) {
             switch (name) {
                 case AGED_BRIE:
@@ -81,6 +57,18 @@ public class Item {
                     decreaseQuality();
                     break;
             }
+        }
+    }
+
+    private void increaseQuality() {
+        if (quality < 50) {
+            quality = quality + 1;
+        }
+    }
+
+    private void decreaseQuality() {
+        if (quality > 0) {
+            quality = quality - (isSulfuras() ? 0 : 1);
         }
     }
 
