@@ -18,65 +18,45 @@ public class Item {
         this.quality = quality;
     }
 
-    boolean isSulfuras() {
-        return name.equals(SULFURAS_HAND_OF_RAGNAROS);
-    }
-
     void updateQuality() {
         switch (name) {
             case AGED_BRIE:
                 increaseQuality();
-
-                sellIn--;
-
-                if (sellIn < 0) {
-                    increaseQuality();
-                }
-
+                decreaseSellIn();
+                if (sellIn < 0) increaseQuality();
                 break;
             case BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT:
                 increaseQuality();
-
-                if (sellIn < 11) {
-                    increaseQuality();
-                }
-
-                if (sellIn < 6) {
-                    increaseQuality();
-                }
-
-                sellIn--;
-
-                if (sellIn < 0) {
-                    quality = 0;
-                }
-
+                if (sellIn < 11) increaseQuality();
+                if (sellIn < 6) increaseQuality();
+                decreaseSellIn();
+                if (sellIn < 0) quality = 0;
                 break;
             case SULFURAS_HAND_OF_RAGNAROS:
 
                 break;
             default:
                 decreaseQuality();
-                sellIn--;
-
-                if (sellIn < 0) {
-                    decreaseQuality();
-                }
-
+                decreaseSellIn();
+                if (sellIn < 0) decreaseQuality();
                 break;
         }
 
     }
 
+    private int decreaseSellIn() {
+        return sellIn--;
+    }
+
     private void increaseQuality() {
         if (quality < 50) {
-            quality = quality + 1;
+            quality++;
         }
     }
 
     private void decreaseQuality() {
         if (quality > 0) {
-            quality = quality - (isSulfuras() ? 0 : 1);
+            quality--;
         }
     }
 
