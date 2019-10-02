@@ -19,14 +19,6 @@ public class Item {
         this.quality = quality;
     }
 
-    boolean isAgedBrie() {
-        return name.equals(AGED_BRIE);
-    }
-
-    boolean isBackstagePasses() {
-        return name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT);
-    }
-
     boolean isSulfuras() {
         return name.equals(SULFURAS_HAND_OF_RAGNAROS);
     }
@@ -44,42 +36,42 @@ public class Item {
     }
 
     void preUpdateQuality() {
-        if (isAgedBrie() || isBackstagePasses()) {
+        if (name.equals(AGED_BRIE)) {
             if (quality < DAY_50) {
                 quality = quality + 1;
 
-                if (isBackstagePasses()) {
-                    if (sellIn < 11) {
-                        if (quality < DAY_50) {
-                            quality = quality + 1;
-                        }
-                    }
+            }
+        } else if (name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
+            if (quality < DAY_50) {
+                quality = quality + 1;
 
-                    if (sellIn < 6) {
-                        if (quality < DAY_50) {
-                            quality = quality + 1;
-                        }
+                if (sellIn < 11) {
+                    if (quality < DAY_50) {
+                        quality = quality + 1;
+                    }
+                }
+
+                if (sellIn < 6) {
+                    if (quality < DAY_50) {
+                        quality = quality + 1;
                     }
                 }
             }
         } else {
             if (quality > 0) {
-                if (isSulfuras()) {
-                } else {
-                    quality = quality - 1;
-                }
+                quality = quality - (isSulfuras() ? 0 : 1);
             }
         }
     }
 
     void postUpdateQuality() {
         if (sellIn < 0) {
-            if (isAgedBrie()) {
+            if (name.equals(AGED_BRIE)) {
                 if (quality < DAY_50) {
                     quality = quality + 1;
                 }
             } else {
-                if (isBackstagePasses()) {
+                if (name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
                     quality = 0;
                 } else {
                     if (quality > 0) {
