@@ -31,16 +31,16 @@ public class Item {
         return name.equals(SULFURAS_HAND_OF_RAGNAROS);
     }
 
-    void decreaseSellIn() {
-        if (isSulfuras()) {
-        } else {
-            sellIn = sellIn - 1;
-        }
+    void updateQuality() {
+        preUpdateQuality();
+
+        decreaseSellIn();
+
+        postUpdateQuality();
     }
 
-    @Override
-    public String toString() {
-        return this.name + ", " + this.sellIn + ", " + this.quality;
+    void decreaseSellIn() {
+        sellIn = sellIn - (isSulfuras() ? 0 : 1);
     }
 
     void preUpdateQuality() {
@@ -92,9 +92,8 @@ public class Item {
         }
     }
 
-    void updateQuality() {
-        preUpdateQuality();
-        decreaseSellIn();
-        postUpdateQuality();
+    @Override
+    public String toString() {
+        return this.name + ", " + this.sellIn + ", " + this.quality;
     }
 }
