@@ -2,10 +2,12 @@ package com.gildedrose
 
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestInstance
 import kotlin.test.assertEquals
 
 
-class CalculatorTest() {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+class CalculatorTest {
 
     @Test
     @DisplayName("return multiplication when 2 numbers given")

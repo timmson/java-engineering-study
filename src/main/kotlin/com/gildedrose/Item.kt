@@ -2,7 +2,7 @@ package com.gildedrose
 
 class Item(private val name: String, var sellIn: Int, var quality: Int) {
 
-    internal fun updateQuality() {
+    internal fun dayEnds() {
         when (name) {
             AGED_BRIE -> {
                 increaseQuality()
@@ -52,8 +52,8 @@ class Item(private val name: String, var sellIn: Int, var quality: Int) {
 
     companion object {
 
-        private val AGED_BRIE = "Aged Brie"
-        private val SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros"
-        private val BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT = "Backstage passes to a TAFKAL80ETC concert"
+        private const val AGED_BRIE = "Aged Brie"
+        private const val SULFURAS_HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros"
+        private const val BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT = "Backstage passes to a TAFKAL80ETC concert"
     }
 }

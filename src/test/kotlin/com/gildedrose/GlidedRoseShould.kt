@@ -1,31 +1,22 @@
 package com.gildedrose
 
-import io.cucumber.java.en.Given
-import io.cucumber.java.en.Then
-import io.cucumber.java.en.When
-import org.junit.jupiter.api.Assertions
+import io.cucumber.java8.En
+import kotlin.test.assertEquals
 
-import org.junit.jupiter.api.Assertions.assertEquals
+class GlidedRoseShould : En {
 
-class GlidedRoseShould {
-
-    private var item: Item? = null
     private var gildedRose: GildedRose? = null
 
-    @Given("Item {string} with SellIn {int} and Quality {int}")
-    fun itemWithSellInAndQuality(name: String, sellIn: Int, quality: Int) {
-        item = Item(name, sellIn, quality)
-        gildedRose = GildedRose(arrayOf(item!!))
-    }
+    init {
+        Given("Item {string} with SellIn {int} and Quality {int}") { name: String, sellIn: Int, quality: Int ->
+            gildedRose = GildedRose(arrayOf(Item(name, sellIn, quality)))
+        }
 
-    @When("End of day occurs")
-    fun endOfDayOccurs() {
-        gildedRose!!.updateQuality()
-    }
+        When("End of day occurs") { gildedRose!!.dayEnds() }
 
-    @Then("Item get SellIn {int} and Quality {int}")
-    fun itemGetSellInAndQuality(sellIn: Int, quality: Int) {
-        assertEquals(sellIn, gildedRose!!.items[0].sellIn)
-        assertEquals(quality, gildedRose!!.items[0].quality)
+        Then("Item get SellIn {int} and Quality {int}") { sellIn: Int, quality: Int ->
+            assertEquals(sellIn, gildedRose!!.items[0].sellIn)
+            assertEquals(quality, gildedRose!!.items[0].quality)
+        }
     }
 }

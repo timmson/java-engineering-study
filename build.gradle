@@ -14,7 +14,7 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_version"
     testRuntime "org.junit.jupiter:junit-jupiter-engine:$junit_version"
 
-    testImplementation "io.cucumber:cucumber-java:4.7.2"
+    testImplementation "io.cucumber:cucumber-java8:4.7.2"
     testImplementation "io.cucumber:cucumber-junit:4.7.2"
 }
 
@@ -39,4 +39,5 @@ compileKotlin {
 
 test {
     useJUnitPlatform()
+    //useJUnit()
 }
