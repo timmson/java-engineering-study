@@ -1,4 +1,4 @@
-//apply plugin: 'java'
+apply plugin: 'java'
 apply plugin: 'kotlin'
 
 repositories {
@@ -7,20 +7,27 @@ repositories {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "org.apache.tomcat.embed:tomcat-embed-core:$tomcat_versoion"
+    implementation "org.apache.tomcat.embed:tomcat-embed-jasper:$tomcat_versoion"
+    implementation "org.apache.tomcat.embed:tomcat-embed-logging-juli:$tomcat_versoion"
+
+    //implementation "org.apache.tomcat:tomcat-jasper:$tomcat_versoion"
+    //implementation "org.apache.tomcat:tomcat-jasper-el:$tomcat_versoion"
+    //implementation "org.apache.tomcat:tomcat-jsp-api:$tomcat_versoion"
+
+    implementation "org.slf4j:slf4j-api:1.7.30"
 
     testImplementation "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit5:$kotlin_version"
-
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_version"
     testRuntime "org.junit.jupiter:junit-jupiter-engine:$junit_version"
 
-    testImplementation "io.cucumber:cucumber-java8:4.7.2"
-    testImplementation "io.cucumber:cucumber-junit:4.7.2"
 }
 
 buildscript {
     ext.junit_version = "5.5.1"
-    ext.kotlin_version = "1.3.50"
+    ext.kotlin_version = "1.3.60"
+    ext.tomcat_versoion = "8.0.53"
 
     repositories {
         mavenCentral()
@@ -39,5 +46,4 @@ compileKotlin {
 
 test {
     useJUnitPlatform()
-    //useJUnit()
 }
