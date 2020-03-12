@@ -6,21 +6,42 @@ repositories {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    //Tomcat
+    compile "org.apache.tomcat.embed:tomcat-embed-core:$tomcat_version"
+    compile "org.apache.tomcat.embed:tomcat-embed-jasper:$tomcat_version"
+    compile "org.apache.tomcat.embed:tomcat-embed-logging-juli:$tomcat_version"
+    //compile "org.apache.tomcat:tomcat-coyote:$tomcat_version"
+    compile "org.apache.tomcat:tomcat-util:$tomcat_version"
+
+
+    //Netty
+    compile "io.netty:netty-all:$netty_versoion"
+
+
+    //implementation "org.apache.tomcat:tomcat-jasper:$tomcat_version"
+    //implementation "org.apache.tomcat:tomcat-jasper-el:$tomcat_version"
+    //implementation "org.apache.tomcat:tomcat-jsp-api:$tomcat_version"
+
+    compile "org.slf4j:slf4j-api:$slf4j_version"
+    compile "org.slf4j:slf4j-simple:$slf4j_version"
 
     testImplementation "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit5:$kotlin_version"
-
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_version"
     testRuntime "org.junit.jupiter:junit-jupiter-engine:$junit_version"
 
-    testImplementation "io.cucumber:cucumber-java8:4.7.2"
-    testImplementation "io.cucumber:cucumber-junit:4.7.2"
 }
 
 buildscript {
     ext.junit_version = "5.5.1"
-    ext.kotlin_version = "1.3.50"
+    ext.kotlin_version = "1.3.60"
+    ext.slf4j_version = "1.7.30"
+
+    //ext.tomcat_version = "8.0.53"
+    ext.tomcat_version = "7.0.0"
+    ext.netty_versoion = "4.1.47.Final"
 
     repositories {
         mavenCentral()
@@ -28,6 +49,13 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+//create a single Jar with all dependencies
+jar {
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
 
@@ -39,5 +67,4 @@ compileKotlin {
 
 test {
     useJUnitPlatform()
-    //useJUnit()
 }
