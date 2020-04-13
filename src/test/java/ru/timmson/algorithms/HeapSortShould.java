@@ -1,6 +1,5 @@
 package ru.timmson.algorithms;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.stream.IntStream;
@@ -22,7 +21,7 @@ public class HeapSortShould {
     }
 
     @Test
-        void sortIntArrayOfTwoNumbers() {
+    void sortIntArrayOfTwoNumbers() {
         var n = new int[]{2, 1};
 
         algorithm.sort(n);
