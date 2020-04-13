@@ -5,48 +5,40 @@ import static java.lang.System.arraycopy;
 public class MergeSort {
     public static void sort(int[] n) {
         if (n.length > 1) {
-            if (n.length == 2) {
-                if (n[0] > n[1]) {
-                    swap(n, 0, 1);
-                }
-            } else {
-                int[] left = copy(n, 0, n.length / 2);
-                int[] right = copy(n, (n.length / 2) + 1, n.length - 1);
+            final var middle = n.length / 2;
 
-                sort(left);
-                sort(right);
+            int[] left = copy(n, 0, middle);
+            int[] right = copy(n, middle, n.length - middle);
 
-                int r = 0;
-                int l = 0;
+            sort(left);
+            sort(right);
 
-                for (int i = 0; i < n.length; i++) {
-                    if (l < left.length) {
-                        if (r < right.length) {
-                            if (left[l] <= right[r]) {
-                                n[i] = left[l];
-                                l++;
-                            } else {
-                                n[i] = right[r];
-                                r++;
-                            }
+            int r = 0;
+            int l = 0;
+
+            for (int i = 0; i < n.length; i++) {
+                if (l < left.length) {
+                    if (r < right.length) {
+                        if (left[l] <= right[r]) {
+                            n[i] = left[l++];
                         } else {
-                            n[i] = left[l];
-                            l++;
+                            n[i] = right[r++];
                         }
                     } else {
-                        n[i] = right[r];
-                        l++;
+                        n[i] = left[l++];
                     }
+                } else {
+                    n[i] = right[r++];
                 }
-
             }
 
         }
+
     }
 
-    private static int[] copy(int[] n, int start, int end) {
-        int[] tmp = new int[end - start + 1];
-        arraycopy(n, start, tmp, 0, end - start + 1);
+    private static int[] copy(int[] n, int start, int length) {
+        int[] tmp = new int[length];
+        arraycopy(n, start, tmp, 0, length);
         return tmp;
     }
 

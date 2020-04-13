@@ -45,7 +45,7 @@ public class MergerSortShould {
 
         MergeSort.sort(n);
 
-        assertArrayEquals(new int[]{1, 1, 2, 2, 3}, n);
+        assertArrayEquals(new int[]{1, 1, 2, 2, 3}, n, IntStream.of(n).boxed().collect(toList()).toString());
     }
 
     @Test
@@ -54,6 +54,6 @@ public class MergerSortShould {
 
         MergeSort.sort(n);
 
-        assertArrayEquals(new int[]{1, 1, 3, 7, 11, 13, 17, 18, 21, 22, 26, 27, 29, 30, 35, 35, 35, 35, 45, 45}, n);
+        assertArrayEquals(new int[]{1, 1, 3, 7, 11, 13, 17, 18, 21, 22, 26, 27, 29, 30, 35, 35, 35, 35, 45, 45}, n, IntStream.of(n).boxed().collect(toList()).toString());
     }
 }
