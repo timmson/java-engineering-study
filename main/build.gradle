@@ -1,0 +1,13 @@
+configurations {
+    impelementaion {
+        canBeResolved = true
+    }
+}
+
+//create a single Jar with all dependencies
+jar {
+    from {
+        configurations.implementation.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
